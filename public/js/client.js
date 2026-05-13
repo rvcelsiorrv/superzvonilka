@@ -2011,7 +2011,7 @@ async function whoAreYou() {
         allowOutsideClick: false,
         allowEscapeKey: false,
         background: swBg,
-        title: 'Немит без долбанного VPN' || 'MiroTalk P2P',
+        title: 'Немит без долбанного VPN хи-хи' || 'MiroTalk P2P',
         position: 'center',
         input: 'text',
         inputPlaceholder: 'Введите имя',
