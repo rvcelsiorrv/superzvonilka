@@ -66,7 +66,13 @@ jobs:
             ${{ env.IMAGE_NAME }}:latest
             ${{ env.IMAGE_NAME }}:${{ github.sha }}
 
-      # Optional: Portainer → Stack → Webhooks → copy URL into repo secret PORTAINER_WEBHOOK_URL
+      # Optional: Portainer → Stack → Webhooks → secret PORTAINER_WEBHOOK_URL (no secrets in if: — GH parser)
       - name: Trigger Portainer redeploy webhook (optional)
-        if: ${{ secrets.PORTAINER_WEBHOOK_URL != '' }}
-        run: curl -fsS -X POST "${{ secrets.PORTAINER_WEBHOOK_URL }}"
+        env:
+          PORTAINER_WEBHOOK_URL: ${{ secrets.PORTAINER_WEBHOOK_URL }}
+        run: |
+          if [ -n "$PORTAINER_WEBHOOK_URL" ]; then
+            curl -fsS -X POST "$PORTAINER_WEBHOOK_URL"
+          else
+            echo "PORTAINER_WEBHOOK_URL not set, skipping Portainer webhook."
+          fi
