@@ -1574,7 +1574,7 @@ function handleServerInfo(config) {
     }
 
     if (notify && peers_count == 1) {
-        shareRoomMeetingURL(true);
+        // shareRoomMeetingURL(true);
     } else {
         checkShareScreen();
     }
@@ -2011,14 +2011,14 @@ async function whoAreYou() {
         allowOutsideClick: false,
         allowEscapeKey: false,
         background: swBg,
-        title: brand.app?.name || 'MiroTalk P2P',
+        title: 'Немит без долбанного VPN' || 'MiroTalk P2P',
         position: 'center',
         input: 'text',
-        inputPlaceholder: 'Enter your email or name',
+        inputPlaceholder: 'Введите имя',
         inputAttributes: { maxlength: 254, id: 'usernameInput' },
         inputValue: window.localStorage.peer_name ? window.localStorage.peer_name : '',
         html: initUser, // inject html
-        confirmButtonText: `Join meeting`,
+        confirmButtonText: `Присоединиться`,
         customClass: { popup: 'init-modal-size' },
         showClass: { popup: 'animate__animated animate__fadeInDown' },
         hideClass: { popup: 'animate__animated animate__fadeOutUp' },
@@ -2026,7 +2026,7 @@ async function whoAreYou() {
             elemDisplay(loadingDiv, false);
         },
         inputValidator: async (value) => {
-            if (!value) return 'Please enter your email or name';
+            if (!value) return 'Введите имя';
 
             // Long email or name
             const isEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
@@ -8436,10 +8436,10 @@ async function shareRoomUrl() {
             */
             console.error('Navigator share error', err);
 
-            shareRoomMeetingURL();
+            // shareRoomMeetingURL();
         }
     } else {
-        shareRoomMeetingURL();
+        // shareRoomMeetingURL();
     }
 }
 

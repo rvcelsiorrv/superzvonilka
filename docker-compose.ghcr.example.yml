@@ -1,0 +1,19 @@
+# Пример для прод-сервера при образе из GitHub Actions (GHCR).
+#
+# Имя образа после успешного CI:
+#   ghcr.io/<ваш-github-логин-или-орг>/<имя-репозитория>:latest
+# (всё в нижнем регистре; точное имя смотрите: репозиторий на GitHub → Packages.)
+#
+# Скопируйте этот файл на сервер как docker-compose.yml (или подключите стек в Portainer),
+# подставьте IMAGE и PORT, рядом положите боевой .env (не коммитьте его в git).
+
+services:
+  mirotalk:
+    image: ghcr.io/your-github-user-or-org/your-repo-name:latest
+    container_name: mirotalk
+    hostname: mirotalk
+    restart: unless-stopped
+    ports:
+      - '${PORT}:${PORT}'
+    volumes:
+      - ./.env:/src/.env:ro
