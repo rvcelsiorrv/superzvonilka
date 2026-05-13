@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
 
 /*--------------------------------------------------------------
 # Root settings
@@ -43,23 +43,31 @@
     --bottom-btns-margin-bottom: 18px;
     --bottom-btns-flex-direction: row;
 
-    /* dark theme fallback (default) */
-    --body-bg: radial-gradient(#2a2a2e, #121214);
-    --msger-bg: radial-gradient(#2a2a2e, #121214);
-    --msger-private-bg: radial-gradient(#2a2a2e, #121214);
-    --wb-bg: radial-gradient(#2a2a2e, #121214);
-    --navbar-bg: rgba(18, 18, 20, 0.85);
-    --elem-border-color: 1px solid rgba(255, 255, 255, 0.08);
-    --select-bg: #333338;
-    --tab-btn-active: #3d3d42;
-    --box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.5);
-    --left-msg-bg: #2c2c30;
-    --right-msg-bg: #3a3a40;
-    --private-msg-bg: #252528;
-    --btn-bar-bg-color: #e8e8ec;
-    --btn-bar-color: #121214;
-    --btns-bg-color: rgba(18, 18, 20, 0.75);
+    /* fresh dark theme — aurora / glass */
+    --body-bg:
+        radial-gradient(1200px 800px at 15% -10%, rgba(99, 102, 241, 0.22), transparent 55%),
+        radial-gradient(900px 700px at 95% 20%, rgba(168, 85, 247, 0.18), transparent 50%),
+        radial-gradient(800px 600px at 50% 100%, rgba(14, 165, 233, 0.12), transparent 45%),
+        linear-gradient(165deg, #0a0f1a 0%, #12152c 42%, #0c1829 100%);
+    --msger-bg: linear-gradient(160deg, #0f1424 0%, #151a30 100%);
+    --msger-private-bg: linear-gradient(160deg, #0f1424 0%, #151a30 100%);
+    --wb-bg: linear-gradient(160deg, #0f1424 0%, #151a30 100%);
+    --navbar-bg: rgba(15, 20, 36, 0.78);
+    --elem-border-color: 1px solid rgba(255, 255, 255, 0.1);
+    --select-bg: rgba(255, 255, 255, 0.08);
+    --tab-btn-active: rgba(99, 102, 241, 0.35);
+    --box-shadow:
+        0 4px 24px rgba(0, 0, 0, 0.45),
+        0 0 0 1px rgba(255, 255, 255, 0.06) inset;
+    --left-msg-bg: rgba(255, 255, 255, 0.06);
+    --right-msg-bg: rgba(99, 102, 241, 0.2);
+    --private-msg-bg: rgba(15, 23, 42, 0.9);
+    --btn-bar-bg-color: #f1f5f9;
+    --btn-bar-color: #0f172a;
+    --btns-bg-color: rgba(15, 23, 42, 0.82);
     --dd-color: #e8e8ec;
+    --accent: #818cf8;
+    --accent-2: #c084fc;
 
     /* volume detected */
     --volume-up: 0px 8px 16px 0px rgb(249, 253, 0);
@@ -73,7 +81,7 @@
 
 * {
     outline: none;
-    font-family: 'Montserrat';
+    font-family: 'Plus Jakarta Sans', 'Montserrat', system-ui, sans-serif;
 }
 
 /*--------------------------------------------------------------
@@ -247,19 +255,36 @@ body {
 #loadingDiv {
     z-index: 9999;
     color: #fff;
-    padding: 30px;
+    padding: 2.25rem 2.5rem 2rem;
     text-align: center;
-    border-radius: 10px;
-    background: var(--btns-bg-color, rgba(0, 0, 0, 0.7));
-    box-shadow: var(--box-shadow);
+    border-radius: 24px;
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.09) 0%, rgba(255, 255, 255, 0.03) 100%);
+    backdrop-filter: blur(20px) saturate(160%);
+    -webkit-backdrop-filter: blur(20px) saturate(160%);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    box-shadow:
+        var(--box-shadow),
+        0 0 80px rgba(99, 102, 241, 0.12);
+    max-width: min(420px, 92vw);
 }
 #loadingDiv h1 {
-    font-size: 60px;
-    font-family: 'Montserrat';
+    font-size: 1.85rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin: 0.5rem 0 0.75rem;
+    background: linear-gradient(135deg, #fff 0%, #c7d2fe 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
 }
 #loadingDiv pre {
-    padding: 5px;
-    font-family: 'Montserrat';
+    padding: 0 0.5rem;
+    margin: 0;
+    font-family: inherit;
+    font-size: 0.95rem;
+    line-height: 1.55;
+    color: rgba(226, 232, 240, 0.88);
+    white-space: pre-wrap;
 }
 
 /* Custom CSS spinner */
@@ -274,8 +299,9 @@ body {
     position: absolute;
     inset: 0;
     border-radius: 50%;
-    border: 4px solid rgba(255, 255, 255, 0.1);
-    border-top-color: #fff;
+    border: 3px solid rgba(255, 255, 255, 0.1);
+    border-top-color: var(--accent);
+    border-right-color: rgba(192, 132, 252, 0.55);
     animation: spin 1s linear infinite;
 }
 
@@ -322,7 +348,8 @@ body {
 --------------------------------------------------------------*/
 
 .init-modal-size {
-    width: 1024px !important;
+    width: 100% !important;
+    max-width: min(480px, 96vw) !important;
     height: auto !important;
 }
 
@@ -345,14 +372,15 @@ body {
     align-items: center;
     justify-content: center;
     z-index: 1;
-    background: rgba(0, 0, 0, 0.6);
-    border-radius: 8px;
+    background: rgba(15, 23, 42, 0.55);
+    border-radius: 16px;
 }
 
 .init-video-container video {
     z-index: 0;
     position: relative;
     height: 240px;
+    border-radius: 16px;
 }
 
 .initComands {
@@ -360,17 +388,16 @@ body {
 }
 
 @media screen and (max-width: 1024px) {
+    .swal2-popup.init-modal-size,
     .init-modal-size {
-        width: auto !important;
+        width: 100% !important;
+        max-width: min(480px, 96vw) !important;
     }
-    .init-user {
-        display: block;
+    #initUser.init-user {
+        display: flex;
     }
     .init-video-container {
         padding: 0px;
-    }
-    .init-modal-size {
-        width: 480px !important;
     }
 }
 
@@ -378,7 +405,10 @@ body {
     display: block;
     width: 100%;
     margin-top: 15px;
-    padding: 10px;
+    padding: 12px 14px;
+    min-height: 48px;
+    height: auto;
+    line-height: 1.45;
     background: var(--select-bg) !important;
     color: white;
     border: 1px solid rgba(255, 255, 255, 0.12);
@@ -409,13 +439,300 @@ body {
     margin-bottom: 10px;
     font-size: 1.5rem;
     color: white;
-    border: var(--border);
-    border-radius: 8px;
-    background-color: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.06);
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
 }
 
 .init-user button:hover {
-    background: var(--body-bg);
+    background: rgba(99, 102, 241, 0.28);
+    border-color: rgba(129, 140, 248, 0.45);
+    box-shadow: 0 0 20px rgba(99, 102, 241, 0.2);
+}
+
+/* --- Pre-join modal (SweetAlert + #initUser): premium layout --- */
+.swal2-popup.init-modal-size {
+    position: relative;
+    overflow: hidden;
+    width: 100% !important;
+    max-width: min(480px, 96vw) !important;
+    padding: 1.5rem 1.5rem 1.35rem !important;
+    border-radius: 28px !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    background:
+        radial-gradient(600px 280px at 10% -20%, rgba(99, 102, 241, 0.2), transparent 55%),
+        radial-gradient(480px 240px at 100% 0%, rgba(168, 85, 247, 0.14), transparent 50%),
+        linear-gradient(168deg, rgba(17, 22, 40, 0.97) 0%, rgba(12, 16, 32, 0.98) 100%) !important;
+    box-shadow:
+        0 28px 80px rgba(0, 0, 0, 0.65),
+        0 0 0 1px rgba(99, 102, 241, 0.18) inset,
+        0 -40px 80px rgba(99, 102, 241, 0.06) inset !important;
+}
+
+.swal2-popup.init-modal-size::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    border-radius: 28px 28px 0 0;
+    pointer-events: none;
+    z-index: 2;
+    background: linear-gradient(
+        90deg,
+        #6366f1,
+        #8b5cf6,
+        #d946ef,
+        #38bdf8,
+        #6366f1
+    );
+    background-size: 200% 100%;
+    animation: initModalBar 5s linear infinite;
+}
+
+@keyframes initModalBar {
+    0% {
+        background-position: 0% 0;
+    }
+    100% {
+        background-position: 200% 0;
+    }
+}
+
+.swal2-popup.init-modal-size .swal2-title {
+    font-size: clamp(1.2rem, 4.5vw, 1.45rem) !important;
+    font-weight: 700 !important;
+    letter-spacing: -0.03em !important;
+    margin: 0.15rem 0 1rem !important;
+    padding: 0 0.25rem !important;
+    line-height: 1.25 !important;
+    background: linear-gradient(120deg, #fff 0%, #e0e7ff 45%, #c4b5fd 100%) !important;
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+    color: transparent !important;
+}
+
+.swal2-popup.init-modal-size .swal2-validation-message {
+    border-radius: 10px !important;
+    background: rgba(220, 38, 38, 0.15) !important;
+    border: 1px solid rgba(248, 113, 113, 0.35) !important;
+    margin-top: 0.35rem !important;
+}
+
+/* Имя: визуально не как устройства (селекты) */
+.swal2-popup.init-modal-size .swal2-input {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0.35rem 0 0 !important;
+    padding: 15px 18px !important;
+    border-radius: 14px !important;
+    text-align: left !important;
+    font-size: 1rem !important;
+    font-weight: 500 !important;
+    color: #f8fafc !important;
+    background: rgba(99, 102, 241, 0.09) !important;
+    border: 1px solid rgba(129, 140, 248, 0.35) !important;
+    box-shadow:
+        inset 0 0 0 1px rgba(99, 102, 241, 0.12),
+        0 2px 12px rgba(0, 0, 0, 0.15) inset !important;
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+.swal2-popup.init-modal-size .swal2-input::placeholder {
+    color: rgba(199, 210, 254, 0.55);
+}
+
+.swal2-popup.init-modal-size .swal2-input:focus {
+    background: rgba(99, 102, 241, 0.12) !important;
+    border: 1px solid rgba(165, 180, 252, 0.75) !important;
+    box-shadow:
+        0 0 0 3px rgba(99, 102, 241, 0.22),
+        0 2px 12px rgba(0, 0, 0, 0.18) inset !important;
+}
+
+.swal2-popup.init-modal-size .swal2-html-container {
+    margin: 0.25rem 0 0 !important;
+    padding: 0 !important;
+    text-align: left !important;
+    overflow: visible !important;
+}
+
+/* Одна колонка: превью сверху, блок управления на всю ширину карточки */
+.swal2-popup.init-modal-size .init-user {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+    padding: 0;
+    width: 100%;
+}
+
+.swal2-popup.init-modal-size .init-video-container {
+    flex: 0 0 auto;
+    align-self: center;
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow:
+        0 0 0 2px rgba(99, 102, 241, 0.35),
+        0 16px 40px rgba(0, 0, 0, 0.45);
+}
+
+.swal2-popup.init-modal-size .init-video-container video {
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    max-height: 220px;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    display: block;
+    border-radius: 18px;
+}
+
+.swal2-popup.init-modal-size .init-video-loader {
+    border-radius: 18px;
+}
+
+/* Кнопки медиа и селекты — одна ширина с остальной колонкой */
+.swal2-popup.init-modal-size .initComands {
+    flex: 1 1 auto;
+    width: 100%;
+    min-width: 0;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-content: flex-start;
+    align-items: stretch;
+}
+
+.swal2-popup.init-modal-size .init-user button {
+    flex: 1 1 0;
+    min-width: 44px;
+    width: auto;
+    height: 52px;
+    max-height: none;
+    aspect-ratio: unset;
+    margin: 0 !important;
+    padding: 0 !important;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem !important;
+    border-radius: 14px !important;
+    background: rgba(255, 255, 255, 0.07) !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.22);
+    transition:
+        transform 0.18s ease,
+        background 0.18s ease,
+        border-color 0.18s ease,
+        box-shadow 0.18s ease;
+}
+
+.swal2-popup.init-modal-size .init-user button:hover {
+    transform: translateY(-2px);
+    background: rgba(99, 102, 241, 0.32) !important;
+    border-color: rgba(165, 180, 252, 0.45) !important;
+    box-shadow: 0 8px 24px rgba(79, 70, 229, 0.25);
+}
+
+.swal2-popup.init-modal-size .init-user select {
+    flex: 1 1 100%;
+    width: 100% !important;
+    min-width: 0;
+    margin: 0 !important;
+    margin-top: 2px !important;
+    box-sizing: border-box !important;
+    display: block;
+    min-height: 52px !important;
+    height: auto !important;
+    line-height: 1.5 !important;
+    padding: 14px 40px 14px 16px !important;
+    border-radius: 14px !important;
+    font-size: 0.9rem !important;
+    font-weight: 500 !important;
+    color: #f1f5f9 !important;
+    background-color: rgba(15, 23, 42, 0.9) !important;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23a5b4fc' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10l-5 5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    background-size: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.14) !important;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15) inset;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    vertical-align: middle;
+}
+
+.swal2-popup.init-modal-size .init-user select option {
+    font-weight: 500;
+    line-height: 1.5;
+    padding: 8px;
+    background: #131b2e;
+    color: #f1f5f9;
+}
+
+.swal2-popup.init-modal-size .init-user select.form-select {
+    background-color: rgba(15, 23, 42, 0.9) !important;
+}
+
+.swal2-popup.init-modal-size .init-user select:hover {
+    border-color: rgba(255, 255, 255, 0.25) !important;
+    background-color: rgba(24, 32, 54, 0.95) !important;
+}
+
+.swal2-popup.init-modal-size .init-user select:focus {
+    border-color: rgba(129, 140, 248, 0.55) !important;
+    box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2) !important;
+    background-color: rgba(24, 32, 54, 0.95) !important;
+}
+
+.swal2-popup.init-modal-size .swal2-actions {
+    margin-top: 1.15rem !important;
+    padding: 0 !important;
+    width: 100% !important;
+}
+
+.swal2-popup.init-modal-size .swal2-confirm {
+    width: 100% !important;
+    max-width: none !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding: 0.9rem 1.25rem !important;
+    font-size: 1.02rem !important;
+    letter-spacing: 0.02em;
+    border-radius: 14px !important;
+}
+
+@media screen and (max-width: 540px) {
+    .swal2-popup.init-modal-size {
+        padding: 1.25rem 1.15rem 1.15rem !important;
+        border-radius: 22px !important;
+    }
+
+    .swal2-popup.init-modal-size .init-user button {
+        min-width: 40px;
+        height: 48px;
+        font-size: 1rem !important;
+        border-radius: 12px !important;
+    }
+
+    .swal2-popup.init-modal-size .init-user select {
+        font-size: 0.85rem !important;
+        padding: 12px 38px 12px 14px !important;
+    }
 }
 
 .fa-phone-slash,
@@ -442,7 +759,7 @@ body {
     z-index: 10;
     display: none;
     position: fixed;
-    padding: 10px;
+    padding: 10px 14px;
     top: var(--bottom-btns-top);
     left: var(--bottom-btns-left);
     bottom: var(--bottom-btns-bottom);
@@ -450,23 +767,38 @@ body {
     flex-direction: var(--bottom-btns-flex-direction);
     align-items: center;
     justify-content: center;
-    gap: 0.5rem;
+    gap: 10px;
     margin-bottom: var(--bottom-btns-margin-bottom);
-    border-radius: 10px;
-    border: none !important;
-    box-shadow: var(--box-shadow);
+    border-radius: 22px;
+    border: 1px solid rgba(255, 255, 255, 0.14) !important;
+    background: linear-gradient(
+        165deg,
+        rgba(22, 28, 48, 0.82) 0%,
+        rgba(15, 20, 36, 0.88) 50%,
+        rgba(12, 16, 28, 0.9) 100%
+    ) !important;
+    backdrop-filter: blur(20px) saturate(165%);
+    -webkit-backdrop-filter: blur(20px) saturate(165%);
+    box-shadow:
+        0 16px 48px rgba(0, 0, 0, 0.5),
+        0 0 0 1px rgba(99, 102, 241, 0.18) inset,
+        0 1px 0 rgba(255, 255, 255, 0.08) inset;
 }
 
-/* Split button (main action + device arrow) */
+/* Группа: основное действие + стрелка устройств — одна «капсула» */
 #bottomButtons .split-btn {
     position: relative;
     display: inline-flex;
     align-items: stretch;
-    overflow: visible;
-    border-radius: 10px;
+    overflow: hidden;
+    gap: 0;
+    padding: 4px;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.07);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
 }
 
-/* Let the dropdown menu anchor to the whole split button (not only the arrow). */
 #bottomButtons #audioDropdown,
 #bottomButtons #videoDropdown,
 #bottomButtons #settingsExtraDropdown {
@@ -474,52 +806,95 @@ body {
 }
 
 #bottomButtons .split-btn > button {
-    border-radius: 0;
-    margin: 0;
+    border-radius: 0 !important;
+    margin: 0 !important;
+    border: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
 }
 
 #bottomButtons .split-btn > button:first-child {
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
+    border-top-left-radius: 14px !important;
+    border-bottom-left-radius: 14px !important;
+    border-top-right-radius: 6px !important;
+    border-bottom-right-radius: 6px !important;
 }
 
 #bottomButtons .split-btn .device-dropdown-toggle {
-    border-radius: 0;
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
-    border-left: var(--border);
-    margin: 0;
+    border-radius: 0 !important;
+    border-top-right-radius: 14px !important;
+    border-bottom-right-radius: 14px !important;
+    border-top-left-radius: 6px !important;
+    border-bottom-left-radius: 6px !important;
+    border-left: 1px solid rgba(255, 255, 255, 0.1) !important;
+    margin: 0 !important;
+    background: transparent !important;
+    min-width: 42px;
+    width: 42px;
+    height: 50px;
 }
 
-/* Keep the group visually together when hovering. */
-#bottomButtons .split-btn button:hover {
+#bottomButtons .split-btn > button:hover,
+#bottomButtons .split-btn .device-dropdown-toggle:hover {
+    background: rgba(99, 102, 241, 0.35) !important;
     transform: none;
+    box-shadow: none;
 }
 
-#bottomButtons button {
+#bottomButtons .split-btn > button:focus-visible,
+#bottomButtons .split-btn .device-dropdown-toggle:focus-visible {
+    outline: 2px solid rgba(165, 180, 252, 0.7);
+    outline-offset: 1px;
+}
+
+/* Одиночные кнопки в панели */
+#bottomButtons > button {
     width: 50px;
     height: 50px;
-    padding: 10px;
-    font-size: 1.6rem;
-    color: var(--btn-bar-bg-color);
-    background: var(--btns-bg-color);
-    border: none !important;
-    border-radius: 10px;
-    transition: all 0.3s ease-in-out;
+    padding: 0;
+    font-size: 1.22rem;
+    color: rgba(248, 250, 252, 0.96);
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    border-radius: 16px !important;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        transform 0.18s ease;
 }
 
-/* Quick device picker (Start Audio/Video) */
-#bottomButtons .device-dropdown-toggle {
-    width: 35px;
+#bottomButtons > button:hover {
+    background: rgba(99, 102, 241, 0.32) !important;
+    border-color: rgba(165, 180, 252, 0.45) !important;
+    box-shadow:
+        0 0 28px rgba(99, 102, 241, 0.2),
+        0 4px 16px rgba(0, 0, 0, 0.25);
+    transform: translateY(-2px);
+}
+
+/* Кнопки внутри split: та же «оптика», без двойной рамки */
+#bottomButtons .split-btn > button:first-child {
+    width: 50px;
+    min-width: 50px;
     height: 50px;
+    padding: 0;
+    font-size: 1.22rem;
+    color: rgba(248, 250, 252, 0.96);
+}
+
+#bottomButtons .device-dropdown-toggle {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     line-height: 1;
+    box-shadow: none !important;
 }
 
 #bottomButtons .device-dropdown-toggle i {
-    font-size: 0.9rem;
+    font-size: 0.82rem;
+    opacity: 0.92;
 }
 
 #bottomButtons .dropdown-menu button {
@@ -546,12 +921,12 @@ body {
     position: absolute;
     left: 0;
     padding: 8px;
-    bottom: 45px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 12px;
-    background: var(--body-bg);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-    backdrop-filter: blur(12px);
+    bottom: 58px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 14px;
+    background: rgba(17, 22, 40, 0.94);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(16px) saturate(150%);
 }
 
 #bottomButtons #audioMenu,
@@ -688,9 +1063,19 @@ body {
     text-align: center;
 }
 
-#bottomButtons button:hover {
-    background: var(--body-bg);
-    transform: var(--btns-hover-scale);
+#bottomButtons #leaveRoomBtn {
+    background: rgba(220, 38, 38, 0.14) !important;
+    border-color: rgba(248, 113, 113, 0.35) !important;
+    color: #fecaca !important;
+}
+
+#bottomButtons #leaveRoomBtn:hover {
+    background: rgba(220, 38, 38, 0.38) !important;
+    border-color: rgba(252, 165, 165, 0.55) !important;
+    box-shadow:
+        0 0 28px rgba(220, 38, 38, 0.28),
+        0 4px 16px rgba(0, 0, 0, 0.25) !important;
+    color: #fff !important;
 }
 
 #participantsBtn {
@@ -2988,42 +3373,58 @@ button {
         width: 90%;
     }
     #bottomButtons {
-        gap: 0.3rem;
+        gap: 6px;
+        padding: 8px 10px;
+        border-radius: 18px;
+    }
+    #bottomButtons > button {
+        width: 44px;
+        height: 44px;
+        font-size: 1.05rem;
+    }
+    #bottomButtons .split-btn {
         padding: 3px;
+        border-radius: 15px;
     }
-    #bottomButtons button {
-        width: 38px;
-        height: 38px;
-        font-size: 0.95rem;
-        padding: 8px;
-        margin: 0 1px;
+    #bottomButtons .split-btn > button:first-child {
+        width: 44px;
+        min-width: 44px;
+        height: 44px;
+        font-size: 1.05rem;
     }
-    #bottomButtons .device-dropdown-toggle {
-        width: 19px;
-        height: 38px;
+    #bottomButtons .split-btn .device-dropdown-toggle {
+        width: 34px;
+        min-width: 34px;
+        height: 44px;
     }
     #bottomButtons .device-dropdown-toggle i {
-        font-size: 0.8rem;
+        font-size: 0.76rem;
     }
 }
 
 @media screen and (max-width: 360px) {
     #bottomButtons {
-        gap: 0.15rem;
-        padding: 2px;
+        gap: 4px;
+        padding: 6px 8px;
     }
-    #bottomButtons button {
-        width: 28px;
-        font-size: 0.65rem;
-        padding: 6px;
-        margin: 0 1px;
+    #bottomButtons > button {
+        width: 38px;
+        height: 38px;
+        font-size: 0.95rem;
     }
-    #bottomButtons .device-dropdown-toggle {
-        width: 14px;
-        height: 24px;
+    #bottomButtons .split-btn > button:first-child {
+        width: 38px;
+        min-width: 38px;
+        height: 38px;
+        font-size: 0.95rem;
+    }
+    #bottomButtons .split-btn .device-dropdown-toggle {
+        width: 30px;
+        min-width: 30px;
+        height: 38px;
     }
     #bottomButtons .device-dropdown-toggle i {
-        font-size: 0.7rem;
+        font-size: 0.72rem;
     }
 }
 
@@ -3809,22 +4210,38 @@ input:checked + .slider:before {
 --------------------------------------------------------------*/
 
 .swal2-popup {
-    border: 1px solid rgba(255, 255, 255, 0.1) !important;
-    border-radius: 20px !important;
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4) !important;
-    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.14) !important;
+    border-radius: 24px !important;
+    box-shadow:
+        0 24px 64px rgba(0, 0, 0, 0.55),
+        0 0 0 1px rgba(99, 102, 241, 0.12) inset !important;
+    backdrop-filter: blur(20px) saturate(160%);
+    -webkit-backdrop-filter: blur(20px) saturate(160%);
+    background: linear-gradient(165deg, rgba(22, 28, 48, 0.94) 0%, rgba(15, 20, 36, 0.92) 100%) !important;
 }
 
-.swal2-popup .swal2-styled {
-    border-radius: 12px !important;
+.swal2-popup .swal2-styled.swal2-confirm {
+    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 55%, #a855f7 100%) !important;
+    color: #fff !important;
+    font-weight: 600 !important;
+    padding: 0.65rem 1.75rem !important;
+    box-shadow: 0 4px 20px rgba(99, 102, 241, 0.35);
+    border: none !important;
 }
 
 .swal2-popup .swal2-styled:focus {
     box-shadow: none !important;
 }
 
+.swal2-title {
+    font-weight: 700 !important;
+    letter-spacing: -0.02em !important;
+    text-align: center;
+    color: white !important;
+    background-color: transparent !important;
+}
+
 .swal2-validation-message,
-.swal2-title,
 .swal2-content,
 .swal2-input {
     text-align: center;
@@ -4617,9 +5034,12 @@ input:checked + .slider:before {
 --------------------------------------------------------------*/
 
 select {
-    height: 40px;
+    box-sizing: border-box;
+    min-height: 44px;
+    height: auto;
+    line-height: 1.45;
     font-size: 0.9rem;
-    padding: 0 10px;
+    padding: 10px 14px;
     box-shadow: none;
     color: #fff;
     background: var(--select-bg);

@@ -840,93 +840,93 @@ function setButtonsToolTip() {
     // Not need for mobile
     if (isMobileDevice) return;
     // Init buttons
-    setTippy(initScreenShareBtn, 'Toggle screen sharing', 'top');
-    setTippy(initVideoMirrorBtn, 'Toggle video mirror', 'top');
-    setTippy(initUsernameEmojiButton, 'Toggle username emoji', 'top');
-    setTippy(initExitBtn, 'Leave meeting', 'top');
+    setTippy(initScreenShareBtn, 'Демонстрация экрана', 'top');
+    setTippy(initVideoMirrorBtn, 'Зеркалить видео', 'top');
+    setTippy(initUsernameEmojiButton, 'Эмодзи в имени', 'top');
+    setTippy(initExitBtn, 'Выйти из встречи', 'top');
 
     // Main buttons
     refreshMainButtonsToolTipPlacement();
     // Chat room buttons
-    setTippy(msgerClose, 'Close', 'bottom');
-    setTippy(msgerTogglePin, 'Toggle chat pin', 'bottom');
-    setTippy(msgerTheme, 'Ghost theme', 'bottom');
-    setTippy(msgerMaxBtn, 'Maximize', 'bottom');
-    setTippy(msgerMinBtn, 'Minimize', 'bottom');
-    setTippy(msgerEmojiBtn, 'Emoji', 'top');
-    setTippy(msgerMarkdownBtn, 'Markdown', 'top');
-    setTippy(msgerShareFileBtn, 'Share file', 'top');
-    setTippy(msgerCPBtn, 'Participants', 'bottom');
-    setTippy(msgerCleanTextBtn, 'Clean', 'top');
-    setTippy(msgerPasteBtn, 'Paste', 'top');
-    setTippy(msgerSendBtn, 'Send', 'top');
+    setTippy(msgerClose, 'Закрыть', 'bottom');
+    setTippy(msgerTogglePin, 'Закрепить чат', 'bottom');
+    setTippy(msgerTheme, 'Тема «призрак»', 'bottom');
+    setTippy(msgerMaxBtn, 'Развернуть', 'bottom');
+    setTippy(msgerMinBtn, 'Свернуть', 'bottom');
+    setTippy(msgerEmojiBtn, 'Эмодзи', 'top');
+    setTippy(msgerMarkdownBtn, 'Разметка', 'top');
+    setTippy(msgerShareFileBtn, 'Отправить файл', 'top');
+    setTippy(msgerCPBtn, 'Участники', 'bottom');
+    setTippy(msgerCleanTextBtn, 'Очистить', 'top');
+    setTippy(msgerPasteBtn, 'Вставить', 'top');
+    setTippy(msgerSendBtn, 'Отправить', 'top');
     // Chat participants buttons
-    setTippy(msgerCPCloseBtn, 'Close', 'bottom');
+    setTippy(msgerCPCloseBtn, 'Закрыть', 'bottom');
     // Caption buttons
-    setTippy(captionClose, 'Close', 'bottom');
-    setTippy(captionMaxBtn, 'Maximize', 'bottom');
-    setTippy(captionMinBtn, 'Minimize', 'bottom');
-    setTippy(captionTogglePin, 'Toggle caption pin', 'bottom');
-    setTippy(captionTheme, 'Ghost theme', 'bottom');
-    setTippy(transcriptSendToAllEl, 'When enabled, your transcription will be sent to all participants', 'bottom');
-    setTippy(speechRecognitionIcon, 'Status', 'bottom');
-    setTippy(speechRecognitionStart, 'Start caption', 'top');
-    setTippy(speechRecognitionStop, 'Stop caption', 'top');
+    setTippy(captionClose, 'Закрыть', 'bottom');
+    setTippy(captionMaxBtn, 'Развернуть', 'bottom');
+    setTippy(captionMinBtn, 'Свернуть', 'bottom');
+    setTippy(captionTogglePin, 'Закрепить субтитры', 'bottom');
+    setTippy(captionTheme, 'Тема «призрак»', 'bottom');
+    setTippy(transcriptSendToAllEl, 'Если включено, расшифровка будет отправлена всем участникам', 'bottom');
+    setTippy(speechRecognitionIcon, 'Статус', 'bottom');
+    setTippy(speechRecognitionStart, 'Запустить субтитры', 'top');
+    setTippy(speechRecognitionStop, 'Остановить субтитры', 'top');
     // Settings
-    setTippy(mySettingsCloseBtn, 'Close', 'bottom');
-    setTippy(myPeerNameSetBtn, 'Change name', 'top');
-    setTippy(myRoomId, 'Room name (click to copy/share)', 'right');
-    setTippy(mySessionTime, 'Session time', 'right');
+    setTippy(mySettingsCloseBtn, 'Закрыть', 'bottom');
+    setTippy(myPeerNameSetBtn, 'Сменить имя', 'top');
+    setTippy(myRoomId, 'Комната (нажмите, чтобы скопировать)', 'right');
+    setTippy(mySessionTime, 'Длительность сессии', 'right');
     setTippy(
         switchNoiseSuppression,
-        'If Active, the audio will be processed to reduce background noise, making the voice clearer',
+        'При включении звук фильтруется от шума, голос звучит чище',
         'right'
     );
     setTippy(
         switchPushToTalk,
-        'If Active, When SpaceBar keydown the microphone will be activated, on keyup will be deactivated, like a walkie-talkie',
+        'Режим рации: микрофон включается, пока зажат пробел',
         'right'
     );
-    setTippy(switchSounds, 'Toggle room notify sounds', 'right');
-    setTippy(switchShare, "Show 'Share Room' popup on join.", 'right');
-    setTippy(switchKeepButtonsVisible, 'Keep buttons always visible', 'right');
-    setTippy(switchPinChatByDefault, 'Open chat pinned by default', 'right');
-    setTippy(switchKeepAwake, 'Prevent the device from sleeping (if supported)', 'right');
-    setTippy(recImage, 'Toggle recording', 'right');
-    setTippy(networkIP, 'IP address associated with the ICE candidate', 'right');
+    setTippy(switchSounds, 'Звуки уведомлений в комнате', 'right');
+    setTippy(switchShare, 'Показывать окно «Поделиться комнатой» при входе', 'right');
+    setTippy(switchKeepButtonsVisible, 'Всегда показывать панель кнопок', 'right');
+    setTippy(switchPinChatByDefault, 'Открывать чат закреплённым', 'right');
+    setTippy(switchKeepAwake, 'Не давать устройству засыпать (если поддерживается)', 'right');
+    setTippy(recImage, 'Запись', 'right');
+    setTippy(networkIP, 'IP-адрес ICE-кандидата', 'right');
     setTippy(
         networkHost,
-        'This type of ICE candidate represents a candidate that corresponds to an interface on the local device. Host candidates are typically generated based on the local IP addresses of the device and can be used for direct peer-to-peer communication within the same network',
+        'Локальный кандидат: интерфейс на этом устройстве. Подходит для сети без NAT',
         'right'
     );
     setTippy(
         networkStun,
-        'Server reflexive candidates are obtained by the ICE agent when it sends a request to a STUN (Session Traversal Utilities for NAT) server. These candidates reflect the public IP address and port of the client as observed by the STUN server. They are useful for traversing NATs (Network Address Translators) and establishing connectivity between peers across different networks',
+        'STUN помогает узнать ваш публичный адрес за NAT и пробить простое соединение между участниками',
         'right'
     );
     setTippy(
         networkTurn,
-        'Relay candidates are obtained when communication between peers cannot be established directly due to symmetric NATs or firewall restrictions. In such cases, communication is relayed through a TURN (Traversal Using Relays around NAT) server. TURN servers act as intermediaries, relaying data between peers, allowing them to communicate even when direct connections are not possible. This is typically the fallback mechanism for establishing connectivity when direct peer-to-peer communication fails',
+        'TURN — ретранслятор трафика, когда прямое P2P невозможно (симметричный NAT, файрвол)',
         'right'
     );
     // Whiteboard buttons
-    setTippy(whiteboardLockBtn, 'Toggle Lock whiteboard', 'right');
-    setTippy(whiteboardUnlockBtn, 'Toggle Lock whiteboard', 'right');
-    setTippy(whiteboardCloseBtn, 'Close', 'bottom');
-    setTippy(wbDrawingColorEl, 'Drawing color', 'bottom');
-    setTippy(whiteboardGhostButton, 'Toggle transparent background', 'bottom');
-    setTippy(whiteboardGridBtn, 'Toggle whiteboard grid', 'bottom');
-    setTippy(wbBackgroundColorEl, 'Background color', 'bottom');
-    setTippy(whiteboardPencilBtn, 'Drawing mode', 'bottom');
-    setTippy(whiteboardVanishingBtn, 'Vanishing pen (disappears in 5s)', 'bottom');
-    setTippy(whiteboardObjectBtn, 'Object mode', 'bottom');
-    setTippy(whiteboardEraserBtn, 'Eraser mode', 'bottom');
-    setTippy(whiteboardUndoBtn, 'Undo', 'bottom');
-    setTippy(whiteboardRedoBtn, 'Redo', 'bottom');
+    setTippy(whiteboardLockBtn, 'Заблокировать доску', 'right');
+    setTippy(whiteboardUnlockBtn, 'Разблокировать доску', 'right');
+    setTippy(whiteboardCloseBtn, 'Закрыть', 'bottom');
+    setTippy(wbDrawingColorEl, 'Цвет линии', 'bottom');
+    setTippy(whiteboardGhostButton, 'Прозрачный фон', 'bottom');
+    setTippy(whiteboardGridBtn, 'Сетка доски', 'bottom');
+    setTippy(wbBackgroundColorEl, 'Цвет фона', 'bottom');
+    setTippy(whiteboardPencilBtn, 'Рисование', 'bottom');
+    setTippy(whiteboardVanishingBtn, 'Исчезающее перо (~5 с)', 'bottom');
+    setTippy(whiteboardObjectBtn, 'Объекты', 'bottom');
+    setTippy(whiteboardEraserBtn, 'Ластик', 'bottom');
+    setTippy(whiteboardUndoBtn, 'Отменить', 'bottom');
+    setTippy(whiteboardRedoBtn, 'Вернуть', 'bottom');
     // Video/audio URL player
-    setTippy(videoUrlCloseBtn, 'Close the video player', 'bottom');
-    setTippy(videoAudioCloseBtn, 'Close the video player', 'bottom');
-    setTippy(msgerVideoUrlBtn, 'Share a video or audio to all participants', 'top');
+    setTippy(videoUrlCloseBtn, 'Закрыть плеер', 'bottom');
+    setTippy(videoAudioCloseBtn, 'Закрыть плеер', 'bottom');
+    setTippy(msgerVideoUrlBtn, 'Показать видео или аудио всем участникам', 'top');
 }
 
 /**
@@ -943,14 +943,14 @@ function refreshMainButtonsToolTipPlacement() {
     // BottomButtons
     bottomButtonsPlacement = btnsBarSelect.options[btnsBarSelect.selectedIndex].value == 'vertical' ? 'top' : 'right';
 
-    setTippy(audioBtn, useAudio ? 'Stop the audio' : 'My audio is disabled', bottomButtonsPlacement);
-    setTippy(videoBtn, useVideo ? 'Stop the video' : 'My video is disabled', bottomButtonsPlacement);
-    setTippy(screenShareBtn, 'Start screen sharing', bottomButtonsPlacement);
-    setTippy(myHandBtn, 'Raise your hand', bottomButtonsPlacement);
-    setTippy(chatRoomBtn, 'Open the chat', bottomButtonsPlacement);
-    setTippy(participantsBtn, 'Show participants', bottomButtonsPlacement);
-    setTippy(mySettingsBtn, 'Open the settings', bottomButtonsPlacement);
-    setTippy(leaveRoomBtn, 'Leave this room', bottomButtonsPlacement);
+    setTippy(audioBtn, useAudio ? 'Выключить микрофон' : 'Микрофон выключён', bottomButtonsPlacement);
+    setTippy(videoBtn, useVideo ? 'Выключить камеру' : 'Камера выключена', bottomButtonsPlacement);
+    setTippy(screenShareBtn, 'Поделиться экраном', bottomButtonsPlacement);
+    setTippy(myHandBtn, 'Поднять руку', bottomButtonsPlacement);
+    setTippy(chatRoomBtn, 'Открыть чат', bottomButtonsPlacement);
+    setTippy(participantsBtn, 'Участники', bottomButtonsPlacement);
+    setTippy(mySettingsBtn, 'Настройки', bottomButtonsPlacement);
+    setTippy(leaveRoomBtn, 'Покинуть комнату', bottomButtonsPlacement);
 }
 
 /**
@@ -2011,7 +2011,7 @@ async function whoAreYou() {
         allowOutsideClick: false,
         allowEscapeKey: false,
         background: swBg,
-        title: 'Немит без VPN' || 'MiroTalk P2P',
+        title: 'Немит без VPN',
         position: 'center',
         input: 'text',
         inputPlaceholder: 'Введите имя',
@@ -2031,7 +2031,7 @@ async function whoAreYou() {
             // Long email or name
             const isEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
             if ((isEmail && value.length > 254) || (!isEmail && value.length > 32)) {
-                return isEmail ? 'Email must be max 254 char' : 'Name must be max 32 char';
+                return isEmail ? 'Email не длиннее 254 символов' : 'Имя не длиннее 32 символов';
             }
 
             // prevent xss execution itself
@@ -2040,12 +2040,12 @@ async function whoAreYou() {
             // prevent XSS injection to remote peer
             if (isHtml(myPeerName)) {
                 myPeerName = '';
-                return 'Invalid name!';
+                return 'Некорректное имя!';
             }
 
             // check if peer name is already in use in the room
             if (await checkUserName()) {
-                return 'Username is already in use!';
+                return 'Это имя уже занято в комнате!';
             } else {
                 // Hide username emoji
                 if (!usernameEmoji.classList.contains('hidden')) {
@@ -2092,8 +2092,8 @@ async function whoAreYou() {
         setMyAudioStatus(useAudio);
     }
 
-    setTippy(initAudioBtn, 'Stop the audio', 'top');
-    setTippy(initVideoBtn, 'Stop the video', 'top');
+    setTippy(initAudioBtn, 'Выключить микрофон', 'top');
+    setTippy(initVideoBtn, 'Выключить камеру', 'top');
 }
 
 /**
@@ -4196,18 +4196,18 @@ async function loadLocalMedia(stream, kind) {
 
             // no mobile devices
             if (!isMobileDevice) {
-                setTippy(myHandStatusIcon, 'My hand is raised', 'bottom');
-                setTippy(myPrivacyBtn, 'Toggle video privacy', 'bottom');
-                setTippy(myVideoStatusIcon, 'My video is on', 'bottom');
-                setTippy(myAudioStatusIcon, 'My audio is on', 'bottom');
-                setTippy(myVideoToImgBtn, 'Take a snapshot', 'bottom');
-                setTippy(myVideoFullScreenBtn, 'Full screen mode', 'bottom');
-                setTippy(myVideoFocusBtn, 'Toggle Focus mode', 'bottom');
-                setTippy(myVideoPiPBtn, 'Toggle picture in picture', 'bottom');
-                setTippy(myVideoZoomInBtn, 'Zoom in video', 'bottom');
-                setTippy(myVideoZoomOutBtn, 'Zoom out video', 'bottom');
-                setTippy(myVideoPinBtn, 'Toggle Pin video', 'bottom');
-                setTippy(myVideoMirrorBtn, 'Toggle video mirror', 'bottom');
+                setTippy(myHandStatusIcon, 'Рука поднята', 'bottom');
+                setTippy(myPrivacyBtn, 'Режим конфиденциальности видео', 'bottom');
+                setTippy(myVideoStatusIcon, 'Камера включена', 'bottom');
+                setTippy(myAudioStatusIcon, 'Микрофон включён', 'bottom');
+                setTippy(myVideoToImgBtn, 'Снимок экрана', 'bottom');
+                setTippy(myVideoFullScreenBtn, 'На весь экран', 'bottom');
+                setTippy(myVideoFocusBtn, 'Режим фокуса', 'bottom');
+                setTippy(myVideoPiPBtn, 'Картинка в картинке', 'bottom');
+                setTippy(myVideoZoomInBtn, 'Увеличить видео', 'bottom');
+                setTippy(myVideoZoomOutBtn, 'Уменьшить видео', 'bottom');
+                setTippy(myVideoPinBtn, 'Закрепить видео', 'bottom');
+                setTippy(myVideoMirrorBtn, 'Зеркалить видео', 'bottom');
             }
 
             // my video avatar image
@@ -4333,7 +4333,7 @@ async function loadLocalMedia(stream, kind) {
                     { element: videoBtn, status: false, mediaType: 'video' },
                 ]);
                 if (!isMobileDevice) {
-                    setTippy(myVideoStatusIcon, 'My video is disabled', 'bottom');
+                    setTippy(myVideoStatusIcon, 'Камера выключена', 'bottom');
                 }
             }
 
@@ -4343,7 +4343,7 @@ async function loadLocalMedia(stream, kind) {
                     { element: audioBtn, status: false, mediaType: 'audio' },
                 ]);
                 if (!isMobileDevice) {
-                    setTippy(myAudioStatusIcon, 'My audio is disabled', 'bottom');
+                    setTippy(myAudioStatusIcon, 'Микрофон выключен', 'bottom');
                 }
             }
             break;
@@ -4400,13 +4400,13 @@ async function loadLocalMedia(stream, kind) {
 
             // no mobile devices
             if (!isMobileDevice) {
-                setTippy(myScreenToImgBtn, 'Take a snapshot', 'bottom');
-                setTippy(myScreenFullScreenBtn, 'Full screen mode', 'bottom');
-                setTippy(myScreenZoomInBtn, 'Zoom in screen', 'bottom');
-                setTippy(myScreenZoomOutBtn, 'Zoom out screen', 'bottom');
-                setTippy(myScreenPiPBtn, 'Toggle picture in picture', 'bottom');
-                setTippy(myScreenFocusBtn, 'Toggle Focus mode', 'bottom');
-                setTippy(myScreenPinBtn, 'Toggle Pin screen', 'bottom');
+                setTippy(myScreenToImgBtn, 'Снимок экрана', 'bottom');
+                setTippy(myScreenFullScreenBtn, 'На весь экран', 'bottom');
+                setTippy(myScreenZoomInBtn, 'Увеличить экран', 'bottom');
+                setTippy(myScreenZoomOutBtn, 'Уменьшить экран', 'bottom');
+                setTippy(myScreenPiPBtn, 'Картинка в картинке', 'bottom');
+                setTippy(myScreenFocusBtn, 'Режим фокуса', 'bottom');
+                setTippy(myScreenPinBtn, 'Закрепить экран', 'bottom');
             }
 
             // my screen avatar image
@@ -4680,15 +4680,15 @@ async function loadRemoteMediaStream(stream, peers, peer_id, kind) {
 
             // tooltips for navbar buttons only (not dropdown items)
             if (!isMobileDevice) {
-                setTippy(remotePeerName, 'Participant name', 'bottom');
-                setTippy(remoteHandStatusIcon, 'Participant hand is raised', 'bottom');
-                setTippy(remoteVideoStatusIcon, 'Participant video is on', 'bottom');
-                setTippy(remoteAudioStatusIcon, 'Participant audio is on', 'bottom');
-                setTippy(remoteAudioVolume, '🔊 Volume', 'top');
-                setTippy(remoteVideoToImgBtn, 'Take a snapshot', 'bottom');
-                setTippy(remoteVideoPiPBtn, 'Toggle picture in picture', 'bottom');
-                setTippy(remoteVideoPinBtn, 'Toggle Pin video', 'bottom');
-                setTippy(remoteVideoFocusBtn, 'Toggle Focus mode', 'bottom');
+                setTippy(remotePeerName, 'Имя участника', 'bottom');
+                setTippy(remoteHandStatusIcon, 'У участника поднята рука', 'bottom');
+                setTippy(remoteVideoStatusIcon, 'Камера участника включена', 'bottom');
+                setTippy(remoteAudioStatusIcon, 'Микрофон участника включён', 'bottom');
+                setTippy(remoteAudioVolume, '🔊 Громкость', 'top');
+                setTippy(remoteVideoToImgBtn, 'Снимок экрана', 'bottom');
+                setTippy(remoteVideoPiPBtn, 'Картинка в картинке', 'bottom');
+                setTippy(remoteVideoPinBtn, 'Закрепить видео', 'bottom');
+                setTippy(remoteVideoFocusBtn, 'Режим фокуса', 'bottom');
             }
 
             // my video avatar image
@@ -4965,17 +4965,17 @@ async function loadRemoteMediaStream(stream, peers, peer_id, kind) {
             remoteScreenPinBtn.className = className.pinUnpin;
 
             if (!isMobileDevice) {
-                setTippy(remoteScreenPeerName, 'Participant screen', 'bottom');
-                setTippy(remoteScreenVideoAudioUrlBtn, 'Send Video or Audio', 'bottom');
-                setTippy(remoteScreenPrivateMsgBtn, 'Open private conversation', 'bottom');
-                setTippy(remoteScreenFileShareBtn, 'Send file', 'bottom');
-                setTippy(remoteScreenToImgBtn, 'Take a snapshot', 'bottom');
-                setTippy(remoteScreenFullScreenBtn, 'Full screen mode', 'bottom');
-                setTippy(remoteScreenZoomInBtn, 'Zoom in screen', 'bottom');
-                setTippy(remoteScreenZoomOutBtn, 'Zoom out screen', 'bottom');
-                setTippy(remoteScreenPiPBtn, 'Toggle picture in picture', 'bottom');
-                setTippy(remoteScreenFocusBtn, 'Toggle Focus mode', 'bottom');
-                setTippy(remoteScreenPinBtn, 'Toggle Pin screen', 'bottom');
+                setTippy(remoteScreenPeerName, 'Экран участника', 'bottom');
+                setTippy(remoteScreenVideoAudioUrlBtn, 'Отправить видео или аудио', 'bottom');
+                setTippy(remoteScreenPrivateMsgBtn, 'Личное сообщение', 'bottom');
+                setTippy(remoteScreenFileShareBtn, 'Отправить файл', 'bottom');
+                setTippy(remoteScreenToImgBtn, 'Снимок экрана', 'bottom');
+                setTippy(remoteScreenFullScreenBtn, 'На весь экран', 'bottom');
+                setTippy(remoteScreenZoomInBtn, 'Увеличить экран', 'bottom');
+                setTippy(remoteScreenZoomOutBtn, 'Уменьшить экран', 'bottom');
+                setTippy(remoteScreenPiPBtn, 'Картинка в картинке', 'bottom');
+                setTippy(remoteScreenFocusBtn, 'Режим фокуса', 'bottom');
+                setTippy(remoteScreenPinBtn, 'Закрепить экран', 'bottom');
             }
 
             remoteScreenAvatarImage.setAttribute('id', peer_id + '_screen_avatar');
@@ -8602,7 +8602,7 @@ function handleAudio(e, init, force = null) {
 
     if (init) {
         setMediaButtonsClass([{ element: initAudioBtn, status: audioStatus, mediaType: 'audio' }]);
-        setTippy(initAudioBtn, audioStatus ? 'Stop the audio' : 'Start the audio', 'right');
+        setTippy(initAudioBtn, audioStatus ? 'Выключить микрофон' : 'Включить микрофон', 'right');
         initMicrophoneSelect.disabled = !audioStatus;
         initSpeakerSelect.disabled = !audioStatus;
         lS.setInitConfig(lS.MEDIA_TYPE.audio, audioStatus);
@@ -8657,7 +8657,7 @@ async function handleVideo(e, init, force = null) {
 
     if (init) {
         setMediaButtonsClass([{ element: initVideoBtn, status: videoStatus, mediaType: 'video' }]);
-        setTippy(initVideoBtn, videoStatus ? 'Stop the video' : 'Start the video', 'top');
+        setTippy(initVideoBtn, videoStatus ? 'Выключить камеру' : 'Включить камеру', 'top');
         displayElements([
             { element: initVideo, display: videoStatus, mode: 'block' },
             { element: initVideoMirrorBtn, display: videoStatus },
@@ -9075,7 +9075,7 @@ function setScreenSharingStatus(status) {
         { element: initScreenShareBtn, status, mediaType: 'screen' },
         { element: screenShareBtn, status, mediaType: 'screen' },
     ]);
-    setTippy(screenShareBtn, status ? 'Stop screen sharing' : 'Start screen sharing', placement);
+    setTippy(screenShareBtn, status ? 'Остановить демонстрацию' : 'Поделиться экраном', placement);
 }
 
 /**
@@ -9106,8 +9106,8 @@ async function setMyVideoStatusTrue() {
     ]);
 
     // Update tooltips
-    setTippy(videoBtn, 'Stop the video', placement);
-    setTippy(initVideoBtn, 'Stop the video', 'top');
+    setTippy(videoBtn, 'Выключить камеру', placement);
+    setTippy(initVideoBtn, 'Выключить камеру', 'top');
 
     emitPeerStatus('video', myVideoStatus);
 }
@@ -9915,7 +9915,7 @@ function showChatRoomDraggable() {
 
     syncParticipantsPanelVisibility();
 
-    setTippy(chatRoomBtn, 'Close the chat', bottomButtonsPlacement);
+        setTippy(chatRoomBtn, 'Закрыть чат', bottomButtonsPlacement);
     screenReaderAccessibility.announceMessage('Chat opened');
 }
 
@@ -10417,7 +10417,7 @@ function hideChatRoomAndEmojiPicker() {
     isParticipantsVisible = false;
     isChatOpenedByParticipantsBtn = false;
     isChatEmojiVisible = false;
-    setTippy(chatRoomBtn, 'Open the chat', bottomButtonsPlacement);
+    setTippy(chatRoomBtn, 'Открыть чат', bottomButtonsPlacement);
     screenReaderAccessibility.announceMessage('Chat closed');
 }
 
@@ -12245,14 +12245,14 @@ function hideShowMySettings() {
         mySettings.style.top = '50%';
         mySettings.style.left = '50%';
         elemDisplay(mySettings, true, 'block');
-        setTippy(mySettingsBtn, 'Close the settings', bottomButtonsPlacement);
+        setTippy(mySettingsBtn, 'Закрыть настройки', bottomButtonsPlacement);
         isMySettingsVisible = true;
         videoMediaContainer.style.opacity = 0.3;
         screenReaderAccessibility.announceMessage('Settings opened');
         return;
     }
     elemDisplay(mySettings, false);
-    setTippy(mySettingsBtn, 'Open the settings', bottomButtonsPlacement);
+    setTippy(mySettingsBtn, 'Настройки', bottomButtonsPlacement);
     isMySettingsVisible = false;
     videoMediaContainer.style.opacity = 1;
     screenReaderAccessibility.announceMessage('Settings closed');
@@ -12578,13 +12578,13 @@ function setMyHandStatus() {
         // Raise hand
         setColor(myHandBtn, '#FFD700');
         elemDisplay(myHandStatusIcon, true);
-        setTippy(myHandBtn, 'Raise your hand', bottomButtonsPlacement);
+        setTippy(myHandBtn, 'Опустить руку', bottomButtonsPlacement);
         playSound('raiseHand');
     } else {
         // Lower hand
         setColor(myHandBtn, 'var(--btn-bar-bg-color)');
         elemDisplay(myHandStatusIcon, false);
-        setTippy(myHandBtn, 'Lower your hand', bottomButtonsPlacement);
+        setTippy(myHandBtn, 'Поднять руку', bottomButtonsPlacement);
     }
     emitPeerStatus('hand', myHandStatus);
 }
@@ -12600,9 +12600,9 @@ function setMyAudioStatus(status) {
     myAudioStatusIcon.className = audioClassName;
     // send my audio status to all peers in the room
     emitPeerStatus('audio', status);
-    const audioStatusLabel = status ? 'My audio is on' : 'My audio is off';
+    const audioStatusLabel = status ? 'Микрофон включён' : 'Микрофон выключен';
     setTippy(myAudioStatusIcon, audioStatusLabel, 'bottom');
-    setTippy(audioBtn, status ? 'Stop the audio' : 'Start the audio', bottomButtonsPlacement);
+    setTippy(audioBtn, status ? 'Выключить микрофон' : 'Включить микрофон', bottomButtonsPlacement);
     status ? playSound('on') : playSound('off');
     screenReaderAccessibility.announceMessage(audioStatusLabel);
 }
@@ -12626,11 +12626,11 @@ function setMyVideoStatus(status) {
     // send my video status to all peers in the room
     emitPeerStatus('video', status);
 
-    const videoStatusLabel = status ? 'My video is on' : 'My video is off';
+    const videoStatusLabel = status ? 'Камера включена' : 'Камера выключена';
 
     if (!isMobileDevice) {
         if (myVideoStatusIcon) setTippy(myVideoStatusIcon, videoStatusLabel, 'bottom');
-        setTippy(videoBtn, status ? 'Stop the video' : 'Start the video', bottomButtonsPlacement);
+        setTippy(videoBtn, status ? 'Выключить камеру' : 'Включить камеру', bottomButtonsPlacement);
     }
 
     if (status) {
@@ -12710,7 +12710,7 @@ function setPeerAudioStatus(peer_id, status) {
 
     if (peerAudioStatus) {
         setMediaButtonsClass([{ element: peerAudioStatus, status, mediaType: 'audio' }]);
-        setTippy(peerAudioStatus, status ? 'Participant audio is on' : 'Participant audio is off', 'bottom');
+        setTippy(peerAudioStatus, status ? 'Микрофон участника включён' : 'Микрофон участника выключен', 'bottom');
         status ? playSound('on') : playSound('off');
     }
     if (peerAudioVolume) {
@@ -12864,7 +12864,7 @@ function setPeerVideoStatus(peer_id, status) {
         if (peerVideoPlayer) peerVideoPlayer.play().catch(() => {});
         if (peerVideoStatus) {
             setMediaButtonsClass([{ element: peerVideoStatus, status: true, mediaType: 'video' }]);
-            setTippy(peerVideoStatus, 'Participant video is on', 'bottom');
+            setTippy(peerVideoStatus, 'Камера участника включена', 'bottom');
             playSound('on');
         }
     } else {
@@ -12876,7 +12876,7 @@ function setPeerVideoStatus(peer_id, status) {
         if (spinner) elemDisplay(spinner, false);
         if (peerVideoStatus) {
             setMediaButtonsClass([{ element: peerVideoStatus, status: false, mediaType: 'video' }]);
-            setTippy(peerVideoStatus, 'Participant video is off', 'bottom');
+            setTippy(peerVideoStatus, 'Камера участника выключена', 'bottom');
             playSound('off');
         }
     }
@@ -13217,7 +13217,7 @@ function handleScreenStart(peer_id, extras) {
 
     if (remoteScreenStatusBtn) {
         remoteScreenStatusBtn.className = className.videoOn;
-        setTippy(remoteScreenStatusBtn, 'Participant screen share is on', 'bottom');
+        setTippy(remoteScreenStatusBtn, 'У участника идёт демонстрация экрана', 'bottom');
     }
     if (remoteScreenAvatarImage) elemDisplay(remoteScreenAvatarImage, false);
 }
@@ -13236,7 +13236,7 @@ function handleScreenStop(peer_id, peer_use_video) {
 
     if (remoteScreenStatusBtn) {
         remoteScreenStatusBtn.className = className.videoOff;
-        setTippy(remoteScreenStatusBtn, 'Participant screen share is off', 'bottom');
+        setTippy(remoteScreenStatusBtn, 'Демонстрация экрана участника выключена', 'bottom');
     }
 
     // If the screen is pinned, unpin it first to restore grid layout
@@ -16083,8 +16083,8 @@ function showDisconnectBanner() {
     if (!banner) return;
     banner.classList.remove('reconnected');
     icon.className = 'fa-solid fa-wifi-exclamation';
-    title.textContent = 'Connection lost';
-    msg.innerHTML = 'Reconnecting to signaling server\u2026';
+    title.textContent = 'Связь потеряна';
+    msg.innerHTML = 'Переподключение к серверу сигнализации\u2026';
     spinner.style.opacity = '1';
     if (disconnectBannerRafId) cancelAnimationFrame(disconnectBannerRafId);
     disconnectBannerRafId = requestAnimationFrame(() => {
@@ -16105,8 +16105,8 @@ function hideDisconnectBanner() {
     if (!banner.classList.contains('visible')) return;
     banner.classList.add('reconnected');
     icon.className = 'fa-solid fa-circle-check';
-    title.textContent = 'Back online';
-    msg.textContent = 'Connection restored successfully';
+    title.textContent = 'Снова в сети';
+    msg.textContent = 'Соединение восстановлено';
     setTimeout(() => {
         banner.classList.remove('visible');
         setTimeout(() => banner.classList.remove('reconnected'), 420);

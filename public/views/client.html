@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ru">
     <head>
         <!-- Title and Icon -->
 
@@ -71,7 +71,7 @@
     </head>
 
     <body>
-        <noscript>You need to enable JavaScript to run this app.</noscript>
+        <noscript>Для работы приложения включите JavaScript.</noscript>
 
         <!-- Disconnect banner -->
 
@@ -81,8 +81,8 @@
                     <i id="disconnectBannerIcon" class="fa-solid fa-wifi-exclamation"></i>
                 </span>
                 <div class="disconnect-banner-text">
-                    <span id="disconnectBannerTitle">Connection lost</span>
-                    <span id="disconnectBannerMsg">Reconnecting to signaling server&hellip;</span>
+                    <span id="disconnectBannerTitle">Связь потеряна</span>
+                    <span id="disconnectBannerMsg">Переподключение к серверу сигнализации&hellip;</span>
                 </div>
                 <span class="disconnect-banner-spinner" id="disconnectBannerSpinner">
                     <i class="fa-solid fa-circle-notch fa-spin"></i>
@@ -103,18 +103,16 @@
                 <div class="spinner-ring"></div>
                 <img class="spinner-logo" src="../images/logo.svg" alt="logo" />
             </div>
-            <h1>Loading</h1>
-            <pre>
-Please allow the camera or microphone
-access to use this app.
-            </pre>
+            <h1>Загрузка</h1>
+            <pre>Разрешите доступ к камере или микрофону,
+чтобы пользоваться приложением.</pre>
         </div>
 
         <!-- Scan to Join -->
 
         <div id="qrRoomPopupContainer" class="top-center fadein">
             <canvas id="qrRoomPopup"></canvas>
-            <div id="qrText">Scan to join the room</div>
+            <div id="qrText">Отсканируйте, чтобы войти в комнату</div>
         </div>
 
         <!-- init user devices -->
@@ -158,7 +156,7 @@ access to use this app.
                         type="button"
                         data-bs-toggle="dropdown"
                         aria-expanded="false"
-                        aria-label="Select microphone"
+                        aria-label="Выбрать микрофон"
                     >
                         <i class="fas fa-chevron-up"></i>
                     </button>
@@ -178,7 +176,7 @@ access to use this app.
                         type="button"
                         data-bs-toggle="dropdown"
                         aria-expanded="false"
-                        aria-label="Select camera"
+                        aria-label="Выбрать камеру"
                     >
                         <i class="fas fa-chevron-up"></i>
                     </button>
@@ -207,7 +205,7 @@ access to use this app.
                         type="button"
                         data-bs-toggle="dropdown"
                         aria-expanded="false"
-                        aria-label="Settings menu"
+                        aria-label="Меню настроек"
                     >
                         <i class="fas fa-chevron-up"></i>
                     </button>
