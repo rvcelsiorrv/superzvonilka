@@ -20,7 +20,7 @@ class LocalStorage {
             transcript_send_to_all: true,
             speech_in_msg: false,
             pin_chat_by_default: false,
-            mic_noise_suppression: true, // Noise suppression using RNNoise
+            mic_noise_suppression: false, // RNNoise / mic noise suppression — default off until enabled in settings
             video_fps: 1, // default 30fps
             screen_fps: 1, // default 30fps
             pitch_bar: true,

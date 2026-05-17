@@ -877,16 +877,8 @@ function setButtonsToolTip() {
     setTippy(myPeerNameSetBtn, 'Сменить имя', 'top');
     setTippy(myRoomId, 'Комната (нажмите, чтобы скопировать)', 'right');
     setTippy(mySessionTime, 'Длительность сессии', 'right');
-    setTippy(
-        switchNoiseSuppression,
-        'При включении звук фильтруется от шума, голос звучит чище',
-        'right'
-    );
-    setTippy(
-        switchPushToTalk,
-        'Режим рации: микрофон включается, пока зажат пробел',
-        'right'
-    );
+    setTippy(switchNoiseSuppression, 'При включении звук фильтруется от шума, голос звучит чище', 'right');
+    setTippy(switchPushToTalk, 'Режим рации: микрофон включается, пока зажат пробел', 'right');
     setTippy(switchSounds, 'Звуки уведомлений в комнате', 'right');
     setTippy(switchShare, 'Показывать окно «Поделиться комнатой» при входе', 'right');
     setTippy(switchKeepButtonsVisible, 'Всегда показывать панель кнопок', 'right');
@@ -894,11 +886,7 @@ function setButtonsToolTip() {
     setTippy(switchKeepAwake, 'Не давать устройству засыпать (если поддерживается)', 'right');
     setTippy(recImage, 'Запись', 'right');
     setTippy(networkIP, 'IP-адрес ICE-кандидата', 'right');
-    setTippy(
-        networkHost,
-        'Локальный кандидат: интерфейс на этом устройстве. Подходит для сети без NAT',
-        'right'
-    );
+    setTippy(networkHost, 'Локальный кандидат: интерфейс на этом устройстве. Подходит для сети без NAT', 'right');
     setTippy(
         networkStun,
         'STUN помогает узнать ваш публичный адрес за NAT и пробить простое соединение между участниками',
@@ -9915,7 +9903,7 @@ function showChatRoomDraggable() {
 
     syncParticipantsPanelVisibility();
 
-        setTippy(chatRoomBtn, 'Закрыть чат', bottomButtonsPlacement);
+    setTippy(chatRoomBtn, 'Закрыть чат', bottomButtonsPlacement);
     screenReaderAccessibility.announceMessage('Chat opened');
 }
 
