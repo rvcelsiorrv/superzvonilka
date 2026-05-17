@@ -149,6 +149,9 @@ const thisInfo = getInfo();
 const lS = new LocalStorage();
 const localStorageSettings = lS.getObjectLocalStorage('P2P_SETTINGS');
 const lsSettings = { ...lS.P2P_SETTINGS, ...(localStorageSettings || {}) };
+// Each full page load: noise suppression stays off until the user explicitly enables it in settings.
+lsSettings.mic_noise_suppression = false;
+lS.setSettings(lsSettings);
 console.log('LOCAL_STORAGE_SETTINGS', lsSettings);
 
 // Check if embedded inside an iFrame
@@ -3662,9 +3665,9 @@ async function initEnumerateDevices() {
  */
 async function initEnumerateAudioDevices() {
     if (isEnumerateAudioDevices) return;
-    // allow the audio
+    // allow the audio (same constraints as the real mic grab — NR off until user opts in)
     await navigator.mediaDevices
-        .getUserMedia({ audio: true })
+        .getUserMedia(getAudioConstraints())
         .then(async (stream) => {
             await enumerateAudioDevices(stream);
             useAudio = true;
@@ -4007,21 +4010,13 @@ async function setupLocalAudioMedia() {
                         ', retrying with relaxed constraints'
                 );
                 stream.getTracks().forEach((t) => t.stop());
-                activeStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                activeStream = await navigator.mediaDevices.getUserMedia(getAudioConstraints());
             }
 
             await loadLocalMedia(activeStream, 'audio');
             if (useAudio) {
                 localAudioMediaStream = activeStream;
                 console.log('10. Access granted to audio device');
-
-                // Auto-enable noise suppression if the user had it active in a previous session.
-                if (lsSettings.mic_noise_suppression && isRNNoiseSupported && buttons.settings.customNoiseSuppression) {
-                    const ok = await enableNoiseSuppression();
-                    if (!ok) {
-                        console.warn('Auto noise-suppression failed on startup, continuing with raw mic.');
-                    }
-                }
             }
         }
     } catch (err) {
@@ -8104,8 +8099,11 @@ function getVideoConstraints(videoQuality) {
  * @returns {object} audio constraints
  */
 function getAudioConstraints(deviceId = null) {
-    // If custom RNNoise is enabled but not supported, fall back to built-in WebRTC noise suppression
-    const useBuiltInNoiseSuppression = !buttons.settings.customNoiseSuppression || !isRNNoiseSupported;
+    const userWantsNoiseSuppression = !!lsSettings.mic_noise_suppression;
+    const rnNoiseAvailable =
+        userWantsNoiseSuppression && buttons.settings.customNoiseSuppression && isRNNoiseSupported;
+    // Browser NR only as fallback when user turned suppression on but RNNoise is unavailable/disabled.
+    const useBuiltInNoiseSuppression = userWantsNoiseSuppression && !rnNoiseAvailable;
 
     // Enhanced audio constraints for better quality and volume on all devices
     // On mobile, use { ideal: true } so getUserMedia succeeds even if the
