@@ -983,8 +983,47 @@ function getPeerInfo() {
         osVersion: osVersion,
         browserName: browserName,
         browserVersion: browserVersion,
+        // публичные поля для карточки участника (различают устройства, без запросов разрешений)
+        screenRes: getScreenResLabel(),
+        timeZone: getTimeZoneLabel(),
+        language: navigator.language || '',
+        deviceLabel: getDeviceLabel(),
         extras: {},
     };
+}
+
+/** Метка экрана: ширина×высота в реальных пикселях */
+function getScreenResLabel() {
+    try {
+        const dpr = window.devicePixelRatio || 1;
+        return `${Math.round(window.screen.width * dpr)}×${Math.round(window.screen.height * dpr)}`;
+    } catch (e) {
+        return '';
+    }
+}
+
+/** Часовой пояс: «Город · GMT±N» (без геолокации) */
+function getTimeZoneLabel() {
+    try {
+        const tz = Intl.DateTimeFormat().resolvedOptions().timeZone || '';
+        const city = tz.split('/').pop().replace(/_/g, ' ');
+        const offMin = -new Date().getTimezoneOffset();
+        const h = offMin / 60;
+        const sign = h >= 0 ? '+' : '−';
+        const abs = Math.abs(h);
+        const hh = Number.isInteger(abs) ? abs : abs.toFixed(1);
+        return city ? `${city} · GMT${sign}${hh}` : `GMT${sign}${hh}`;
+    } catch (e) {
+        return '';
+    }
+}
+
+/** Тип устройства человекочитаемо */
+function getDeviceLabel() {
+    if (isTabletDevice) return 'Планшет';
+    if (isMobileDevice) return 'Телефон';
+    if (isIPadDevice) return 'Планшет';
+    return 'Компьютер';
 }
 
 /**
@@ -2016,6 +2055,33 @@ async function whoAreYou() {
         willOpen: () => {
             elemDisplay(loadingDiv, false);
         },
+        didOpen: () => {
+            try {
+                const pop = Swal.getPopup();
+                const input = Swal.getInput();
+                const htmlC = pop.querySelector('.swal2-html-container');
+                if (!htmlC) return;
+                const wrap = document.createElement('div');
+                wrap.className = 'init-orb-wrap';
+                const orb = document.createElement('img');
+                orb.className = 'init-orb-preview';
+                orb.alt = 'Превью вашего орба';
+                const caption = document.createElement('div');
+                caption.className = 'init-orb-caption';
+                const render = () => {
+                    const n = (input && input.value) || window.localStorage.peer_name || 'Гость';
+                    orb.src = genAvatarSvg(n || 'Гость', 220);
+                    caption.textContent = n ? n : 'Ваш узел';
+                };
+                render();
+                wrap.appendChild(orb);
+                wrap.appendChild(caption);
+                htmlC.insertBefore(wrap, htmlC.firstChild);
+                if (input) input.addEventListener('input', render);
+            } catch (e) {
+                console.warn('init orb preview error', e.message);
+            }
+        },
         inputValidator: async (value) => {
             if (!value) return 'Введите имя';
 
@@ -2631,6 +2697,10 @@ async function restartNoiseSuppression() {
 async function whoAreYouJoin() {
     myVideoPeerName.innerText = myPeerName + ' (me)';
     setPeerAvatarImgName('myVideoAvatarImage', myPeerName, myPeerAvatar);
+    // публичный «паспорт» для своей карточки
+    if (myVideoWrap && !getId('me_idpanel')) {
+        myVideoWrap.appendChild(buildOrbIdentityPanel('me', myPeerName, navigator.userAgent, true));
+    }
     setPeerAvatarImgName('myProfileAvatar', myPeerName, myPeerAvatar);
     setPeerChatAvatarImgName('right', myPeerName, myPeerAvatar);
     joinToChannel();
@@ -3375,22 +3445,24 @@ function handleRemovePeer(config) {
  */
 let themeMap = {
     dark: {
-        '--body-bg': 'radial-gradient(#2a2a2e, #121214)',
-        '--msger-bg': 'radial-gradient(#2a2a2e, #121214)',
-        '--msger-private-bg': 'radial-gradient(#2a2a2e, #121214)',
-        '--wb-bg': 'radial-gradient(#2a2a2e, #121214)',
-        '--elem-border-color': '1px solid rgba(255, 255, 255, 0.08)',
-        '--navbar-bg': 'rgba(18, 18, 20, 0.85)',
-        '--select-bg': '#333338',
-        '--tab-btn-active': '#3d3d42',
-        '--box-shadow': '0px 4px 12px 0px rgba(0, 0, 0, 0.5)',
-        '--left-msg-bg': '#2c2c30',
-        '--right-msg-bg': '#3a3a40',
-        '--private-msg-bg': '#252528',
-        '--btn-bar-bg-color': '#E8E8EC',
-        '--btn-bar-color': '#121214',
-        '--btns-bg-color': 'rgba(18, 18, 20, 0.75)',
-        '--dd-color': '#E8E8EC',
+        // Constellation — тёмный космос с сетевыми акцентами
+        '--body-bg':
+            'radial-gradient(1100px 760px at 12% -8%, rgba(110,168,255,0.16), transparent 55%), radial-gradient(900px 700px at 92% 8%, rgba(139,125,255,0.14), transparent 52%), radial-gradient(760px 600px at 50% 112%, rgba(155,231,216,0.10), transparent 48%), linear-gradient(168deg, #060914 0%, #080d20 46%, #060a17 100%)',
+        '--msger-bg': 'linear-gradient(160deg, #0b1228 0%, #0a1024 100%)',
+        '--msger-private-bg': 'linear-gradient(160deg, #0b1228 0%, #0a1024 100%)',
+        '--wb-bg': 'linear-gradient(160deg, #0b1228 0%, #0a1024 100%)',
+        '--elem-border-color': '1px solid rgba(120, 162, 255, 0.18)',
+        '--navbar-bg': 'rgba(8, 13, 28, 0.72)',
+        '--select-bg': 'rgba(110, 168, 255, 0.08)',
+        '--tab-btn-active': 'rgba(110, 168, 255, 0.28)',
+        '--box-shadow': '0 16px 48px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(110,168,255,0.06) inset',
+        '--left-msg-bg': 'rgba(255, 255, 255, 0.05)',
+        '--right-msg-bg': 'rgba(110, 168, 255, 0.2)',
+        '--private-msg-bg': 'rgba(10, 16, 36, 0.92)',
+        '--btn-bar-bg-color': '#E8EEFF',
+        '--btn-bar-color': '#06122a',
+        '--btns-bg-color': 'rgba(10, 16, 36, 0.75)',
+        '--dd-color': '#9be7d8',
     },
     grey: {
         '--body-bg': 'radial-gradient(#3b3f47, #1e2028)',
@@ -4781,6 +4853,17 @@ async function loadRemoteMediaStream(stream, peers, peer_id, kind) {
             remoteVideoWrap.appendChild(remoteMedia);
             remoteVideoWrap.appendChild(remotePeerName);
 
+            // публичный «паспорт» участника (имя, браузер, система, устройство…)
+            remoteVideoWrap.appendChild(
+                buildOrbIdentityPanel(
+                    peer_id,
+                    peer_name,
+                    peers[peer_id] && peers[peer_id].userAgent,
+                    false,
+                    peers[peer_id] && peers[peer_id].peer_info
+                )
+            );
+
             createVideoLoadingSpinner(remoteVideoWrap, remoteMedia);
 
             // need later on disconnect or remove peers
@@ -5353,43 +5436,189 @@ function isValidEmail(email) {
  * @param {integer} avatarImgSize width and height in px
  */
 function genAvatarSvg(peerName, avatarImgSize) {
-    const charCodeRed = peerName.charCodeAt(0);
-    const charCodeGreen = peerName.charCodeAt(1) || charCodeRed;
-    const red = Math.pow(charCodeRed, 7) % 200;
-    const green = Math.pow(charCodeGreen, 7) % 200;
-    const blue = (red + green) % 200;
-    const bgColor = `rgb(${red}, ${green}, ${blue})`;
-    const textColor = '#ffffff';
+    // Resonance orb: живая плазменная сфера со свечением, кольцами и переливами (SMIL)
+    let hash = 0;
+    for (let i = 0; i < peerName.length; i++) {
+        hash = (hash * 31 + peerName.charCodeAt(i)) >>> 0;
+    }
+    // переливающиеся ирис-схемы (c1→c2→c3 плазма, ring — кольцо)
+    const schemes = [
+        { c1: '#6d5cff', c2: '#3aa0ff', c3: '#5ff0e0', ring: '#8fdcff' },
+        { c1: '#00d4ff', c2: '#6d5cff', c3: '#c46bff', ring: '#b9a8ff' },
+        { c1: '#2fe6c8', c2: '#3aa0ff', c3: '#7c5cff', ring: '#7df9ff' },
+        { c1: '#ff7eb6', c2: '#8a6dff', c3: '#4ad6ff', ring: '#ffc2e0' },
+    ];
+    const s = schemes[hash % schemes.length];
+    const id = (hash % 100000).toString(36);
+    const initials = peerName.substring(0, 2).toUpperCase();
+
+    // viewBox 200; центр 100,100; сфера r=62; аура до ~92
     const svg = `
-    <svg xmlns="http://www.w3.org/2000/svg" 
-    xmlns:xlink="http://www.w3.org/1999/xlink" 
-    width="${avatarImgSize}px" 
-    height="${avatarImgSize}px" 
-    viewBox="0 0 ${avatarImgSize} ${avatarImgSize}" 
-    version="1.1">
-        <circle 
-            fill="${bgColor}" 
-            width="${avatarImgSize}" 
-            height="${avatarImgSize}" 
-            cx="${avatarImgSize / 2}" 
-            cy="${avatarImgSize / 2}" 
-            r="${avatarImgSize / 2}"/>
-        <text 
-            x="50%" 
-            y="50%" 
-            style="color:${textColor};
-            line-height:1;
-            font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Fira Sans, Droid Sans, Helvetica Neue, sans-serif" 
-            alignment-baseline="middle" 
-            text-anchor="middle" 
-            font-size="${Math.round(avatarImgSize * 0.4)}" 
-            font-weight="normal" 
-            dy=".1em" 
-            dominant-baseline="middle" 
-            fill="${textColor}">${peerName.substring(0, 2).toUpperCase()}
-        </text>
+    <svg xmlns="http://www.w3.org/2000/svg" width="${avatarImgSize}px" height="${avatarImgSize}px" viewBox="0 0 200 200" version="1.1">
+        <defs>
+            <radialGradient id="au${id}" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="${s.c2}" stop-opacity="0.55"/>
+                <stop offset="55%" stop-color="${s.c1}" stop-opacity="0.18"/>
+                <stop offset="100%" stop-color="${s.c1}" stop-opacity="0"/>
+            </radialGradient>
+            <radialGradient id="vg${id}" cx="38%" cy="32%" r="72%">
+                <stop offset="0%" stop-color="#0a1130" stop-opacity="0"/>
+                <stop offset="68%" stop-color="#070c22" stop-opacity="0"/>
+                <stop offset="100%" stop-color="#04081a" stop-opacity="0.78"/>
+            </radialGradient>
+            <radialGradient id="hl${id}" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#ffffff" stop-opacity="0.85"/>
+                <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+            </radialGradient>
+            <linearGradient id="rg${id}" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="${s.c3}"/>
+                <stop offset="100%" stop-color="${s.c1}"/>
+            </linearGradient>
+            <filter id="bl${id}" x="-50%" y="-50%" width="200%" height="200%">
+                <feGaussianBlur stdDeviation="9"/>
+            </filter>
+            <filter id="ab${id}" x="-60%" y="-60%" width="220%" height="220%">
+                <feGaussianBlur stdDeviation="8"/>
+            </filter>
+            <clipPath id="cp${id}"><circle cx="100" cy="100" r="62"/></clipPath>
+        </defs>
+
+        <circle cx="100" cy="100" r="78" fill="url(#au${id})" filter="url(#ab${id})">
+            <animate attributeName="r" values="74;84;74" dur="4.6s" repeatCount="indefinite"/>
+            <animate attributeName="opacity" values="0.75;1;0.75" dur="4.6s" repeatCount="indefinite"/>
+        </circle>
+
+        <g transform-origin="100 100">
+            <animateTransform attributeName="transform" type="rotate" from="0 100 100" to="360 100 100" dur="14s" repeatCount="indefinite"/>
+            <circle cx="100" cy="100" r="71" fill="none" stroke="url(#rg${id})" stroke-width="1.6" stroke-linecap="round" stroke-dasharray="150 240" opacity="0.85"/>
+        </g>
+        <g transform-origin="100 100">
+            <animateTransform attributeName="transform" type="rotate" from="360 100 100" to="0 100 100" dur="20s" repeatCount="indefinite"/>
+            <ellipse cx="100" cy="100" rx="68" ry="40" fill="none" stroke="${s.ring}" stroke-width="1" stroke-dasharray="6 16" opacity="0.5"/>
+        </g>
+
+        <g clip-path="url(#cp${id})">
+            <rect x="38" y="38" width="124" height="124" fill="#070c22"/>
+            <circle cx="84" cy="86" r="40" fill="${s.c3}" opacity="0.6" filter="url(#bl${id})">
+                <animate attributeName="cx" values="84;120;90;84" dur="9s" repeatCount="indefinite"/>
+                <animate attributeName="cy" values="86;108;128;86" dur="11s" repeatCount="indefinite"/>
+                <animate attributeName="fill" values="${s.c3};${s.c2};${s.c1};${s.c3}" dur="12s" repeatCount="indefinite"/>
+            </circle>
+            <circle cx="124" cy="120" r="34" fill="${s.c1}" opacity="0.6" filter="url(#bl${id})">
+                <animate attributeName="cx" values="124;92;118;124" dur="10s" repeatCount="indefinite"/>
+                <animate attributeName="cy" values="120;92;130;120" dur="8s" repeatCount="indefinite"/>
+                <animate attributeName="fill" values="${s.c1};${s.c3};${s.c2};${s.c1}" dur="13s" repeatCount="indefinite"/>
+            </circle>
+            <circle cx="100" cy="100" r="22" fill="${s.c2}" opacity="0.5" filter="url(#bl${id})">
+                <animate attributeName="opacity" values="0.35;0.7;0.35" dur="3.4s" repeatCount="indefinite"/>
+            </circle>
+            <circle cx="100" cy="100" r="62" fill="url(#vg${id})"/>
+            <ellipse cx="80" cy="74" rx="34" ry="24" fill="url(#hl${id})" opacity="0.5" filter="url(#bl${id})"/>
+        </g>
+
+        <circle cx="100" cy="100" r="62" fill="none" stroke="url(#rg${id})" stroke-width="1.5" opacity="0.9"/>
+
+        <g transform-origin="100 100">
+            <animateTransform attributeName="transform" type="rotate" from="0 100 100" to="360 100 100" dur="9s" repeatCount="indefinite"/>
+            <circle cx="100" cy="29" r="3.4" fill="${s.c3}"/>
+        </g>
+        <g transform-origin="100 100">
+            <animateTransform attributeName="transform" type="rotate" from="210 100 100" to="570 100 100" dur="13s" repeatCount="indefinite"/>
+            <circle cx="100" cy="32" r="2.2" fill="${s.ring}"/>
+        </g>
+
+        <text x="100" y="100" text-anchor="middle" dominant-baseline="central" dy="0.04em"
+            font-family="Space Grotesk, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif"
+            font-size="54" font-weight="600" letter-spacing="1"
+            fill="#f4f9ff" fill-opacity="0.96">${initials}</text>
     </svg>`;
     return 'data:image/svg+xml,' + svg.replace(/#/g, '%23').replace(/"/g, "'").replace(/&/g, '&amp;');
+}
+
+/**
+ * Разбор user-agent в человекочитаемые поля
+ * @param {string} ua
+ * @param {boolean} isLocal
+ */
+function getDisplayInfo(ua, isLocal, peerInfoObj) {
+    const join = (a, b) => [a, b].filter(Boolean).join(' ');
+    const major = (v) => (v ? String(v).split('.')[0] : '');
+    const p = peerInfoObj || {};
+
+    // Браузер: лучший источник — user-agent; иначе peer_info
+    let browser = '';
+    if (ua || isLocal) {
+        let r;
+        try {
+            r = ua ? new UAParser(ua).getResult() : parserResult;
+        } catch (e) {
+            r = parserResult;
+        }
+        browser = join(r.browser && r.browser.name, r.browser && (r.browser.major || major(r.browser.version)));
+    }
+    if (!browser) browser = join(p.browserName, major(p.browserVersion));
+
+    const devFromFlags = p.isTabletDevice ? 'Планшет' : p.isMobileDevice ? 'Телефон' : 'Компьютер';
+
+    if (isLocal) {
+        return {
+            browser: browser || '—',
+            device: getDeviceLabel(),
+            screen: getScreenResLabel(),
+            tz: getTimeZoneLabel(),
+            lang: navigator.language || '',
+        };
+    }
+    return {
+        browser: browser || '—',
+        device: p.deviceLabel || devFromFlags,
+        screen: p.screenRes || '',
+        tz: p.timeZone || '',
+        lang: p.language || '',
+    };
+}
+
+/**
+ * Карточка-«паспорт» участника: публичная инфа с каскадной анимацией.
+ * Показывается под орбом, когда камера выключена.
+ * @param {string} suffix уникальный префикс id (peer_id или 'me')
+ * @param {string} peerName
+ * @param {string} ua user-agent (для удалённых берём из peers, иначе navigator)
+ * @param {boolean} isLocal
+ * @returns {HTMLElement}
+ */
+function buildOrbIdentityPanel(suffix, peerName, ua, isLocal, peerInfoObj) {
+    const info = getDisplayInfo(ua, isLocal, peerInfoObj);
+    const safeName = typeof filterXSS === 'function' ? filterXSS(peerName || 'Гость') : peerName || 'Гость';
+
+    const rows = [
+        { icon: 'fa-compass', k: 'Браузер', v: info.browser },
+        { icon: 'fa-laptop', k: 'Устройство', v: info.device },
+        { icon: 'fa-display', k: 'Экран', v: info.screen },
+        { icon: 'fa-earth-europe', k: 'Часовой пояс', v: info.tz },
+        { icon: 'fa-language', k: 'Язык', v: info.lang },
+        { icon: 'fa-shield-halved', k: 'Канал', v: 'P2P · E2E' },
+    ].filter((r) => r.v && r.v !== '—');
+
+    const panel = document.createElement('div');
+    panel.className = 'orb-id';
+    panel.id = suffix + '_idpanel';
+
+    let html =
+        `<div class="orb-id-head">` +
+        `<span class="orb-id-name">${safeName}</span>` +
+        `<span class="orb-id-status"><i class="orb-id-dot"></i>${isLocal ? 'это вы' : 'в сети'}</span>` +
+        `</div><div class="orb-id-grid">`;
+    rows.forEach((row, i) => {
+        html +=
+            `<div class="orb-id-item" style="--i:${i}">` +
+            `<span class="orb-id-ic"><i class="fas ${row.icon}"></i></span>` +
+            `<span class="orb-id-kv"><span class="orb-id-k">${row.k}</span>` +
+            `<span class="orb-id-v">${row.v}</span></span></div>`;
+    });
+    html += `</div>`;
+    panel.innerHTML = html;
+    return panel;
 }
 
 /**
